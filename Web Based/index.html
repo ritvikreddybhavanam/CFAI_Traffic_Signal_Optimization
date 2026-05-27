@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Traffic Signal System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🚦 Smart Traffic Signal Optimization System</h1>
+
+<div class="container">
+
+    <!-- INPUT -->
+    <div class="panel">
+        <h2>Traffic Input</h2>
+
+        <label>North</label>
+        <input type="range" id="north" min="0" max="100" value="30">
+
+        <label>South</label>
+        <input type="range" id="south" min="0" max="100" value="40">
+
+        <label>East</label>
+        <input type="range" id="east" min="0" max="100" value="70">
+
+        <label>West</label>
+        <input type="range" id="west" min="0" max="100" value="50">
+
+        <button onclick="startSystem()">START SYSTEM</button>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="panel">
+        <h2>Signal Output</h2>
+
+        <div id="signal">Waiting...</div>
+        <canvas id="graph"></canvas>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

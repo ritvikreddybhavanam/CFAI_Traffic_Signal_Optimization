@@ -1,0 +1,47 @@
+2026-05-27 11:56:03 | traffic_system | INFO | Logger initialized successfully
+2026-05-27 11:56:03 | traffic_system | INFO | Initial State: {'NORTH': 20, 'SOUTH': 25, 'EAST': 13, 'WEST': 6}
+2026-05-27 11:56:03 | traffic_system | INFO | Step 1 started
+2026-05-27 11:56:03 | traffic_system | INFO | Greedy selected lane: SOUTH
+2026-05-27 11:56:03 | traffic_system | INFO | Updated State: {'NORTH': 20, 'SOUTH': 20, 'EAST': 13, 'WEST': 6}
+2026-05-27 11:56:03 | traffic_system | INFO | CSP Suggestion: NORTH
+2026-05-27 11:56:03 | traffic_system | INFO | Step 2 started
+2026-05-27 11:56:03 | traffic_system | INFO | Greedy selected lane: NORTH
+2026-05-27 11:56:03 | traffic_system | INFO | Updated State: {'NORTH': 15, 'SOUTH': 20, 'EAST': 13, 'WEST': 6}
+2026-05-27 11:56:03 | traffic_system | INFO | CSP Suggestion: SOUTH
+2026-05-27 11:56:03 | traffic_system | INFO | Step 3 started
+2026-05-27 11:56:03 | traffic_system | INFO | Greedy selected lane: SOUTH
+2026-05-27 11:56:03 | traffic_system | INFO | Updated State: {'NORTH': 15, 'SOUTH': 15, 'EAST': 13, 'WEST': 6}
+2026-05-27 11:56:03 | traffic_system | INFO | CSP Suggestion: NORTH
+2026-05-27 11:56:03 | traffic_system | INFO | Step 4 started
+2026-05-27 11:56:03 | traffic_system | INFO | Greedy selected lane: NORTH
+2026-05-27 11:56:03 | traffic_system | INFO | Updated State: {'NORTH': 10, 'SOUTH': 15, 'EAST': 13, 'WEST': 6}
+2026-05-27 11:56:03 | traffic_system | INFO | CSP Suggestion: SOUTH
+2026-05-27 11:56:03 | traffic_system | INFO | Step 5 started
+2026-05-27 11:56:03 | traffic_system | INFO | Greedy selected lane: SOUTH
+2026-05-27 11:56:03 | traffic_system | INFO | Updated State: {'NORTH': 10, 'SOUTH': 10, 'EAST': 13, 'WEST': 6}
+2026-05-27 11:56:03 | traffic_system | INFO | CSP Suggestion: EAST
+2026-05-27 11:56:03 | traffic_system | INFO | Simulation ended. Final state: {'NORTH': 10, 'SOUTH': 10, 'EAST': 13, 'WEST': 6}
+2026-05-27 11:57:56 | traffic_system | INFO | Logger initialized successfully
+2026-05-27 11:57:56 | traffic_system | INFO | Traffic Simulation Started
+2026-05-27 11:57:56 | traffic_system | INFO | Initial State: {'NORTH': 20, 'SOUTH': 20, 'EAST': 6, 'WEST': 23}
+2026-05-27 11:57:56 | traffic_system | INFO | Step 1 started
+2026-05-27 11:57:56 | traffic_system | INFO | Greedy selected lane: WEST
+2026-05-27 11:57:56 | traffic_system | INFO | Updated State: {'NORTH': 20, 'SOUTH': 20, 'EAST': 6, 'WEST': 18}
+2026-05-27 11:57:56 | traffic_system | INFO | CSP Suggestion: NORTH
+2026-05-27 11:57:56 | traffic_system | INFO | Step 2 started
+2026-05-27 11:57:56 | traffic_system | INFO | Greedy selected lane: NORTH
+2026-05-27 11:57:56 | traffic_system | INFO | Updated State: {'NORTH': 15, 'SOUTH': 20, 'EAST': 6, 'WEST': 18}
+2026-05-27 11:57:56 | traffic_system | INFO | CSP Suggestion: SOUTH
+2026-05-27 11:57:56 | traffic_system | INFO | Step 3 started
+2026-05-27 11:57:56 | traffic_system | INFO | Greedy selected lane: SOUTH
+2026-05-27 11:57:56 | traffic_system | INFO | Updated State: {'NORTH': 15, 'SOUTH': 15, 'EAST': 6, 'WEST': 18}
+2026-05-27 11:57:56 | traffic_system | INFO | CSP Suggestion: WEST
+2026-05-27 11:57:56 | traffic_system | INFO | Step 4 started
+2026-05-27 11:57:56 | traffic_system | INFO | Greedy selected lane: WEST
+2026-05-27 11:57:56 | traffic_system | INFO | Updated State: {'NORTH': 15, 'SOUTH': 15, 'EAST': 6, 'WEST': 13}
+2026-05-27 11:57:56 | traffic_system | INFO | CSP Suggestion: NORTH
+2026-05-27 11:57:56 | traffic_system | INFO | Step 5 started
+2026-05-27 11:57:56 | traffic_system | INFO | Greedy selected lane: NORTH
+2026-05-27 11:57:56 | traffic_system | INFO | Updated State: {'NORTH': 10, 'SOUTH': 15, 'EAST': 6, 'WEST': 13}
+2026-05-27 11:57:56 | traffic_system | INFO | CSP Suggestion: SOUTH
+2026-05-27 11:57:56 | traffic_system | INFO | Simulation ended. Final state: {'NORTH': 10, 'SOUTH': 15, 'EAST': 6, 'WEST': 13}
