@@ -1,476 +1,156 @@
-# 🚦 Rule-Based Traffic Signal Optimization System
+# Traffic Signal Optimization System using Artificial Intelligence
 
-## 📌 Project Overview
+## Overview
 
-The **Rule-Based Traffic Signal Optimization System** is an Artificial Intelligence-based traffic management solution that improves vehicle movement at road intersections using predefined rules and heuristics instead of machine learning algorithms.
-
-The system continuously monitors traffic conditions such as vehicle queue length and waiting time across multiple lanes. Based on the observed traffic state, it dynamically selects the most suitable lane to receive the green signal, helping reduce congestion, minimize delays, and improve overall traffic flow.
-
-This project demonstrates the application of AI concepts including:
-
-* Intelligent Agents
-* State Space Representation
-* Search Algorithms
-* Constraint Satisfaction Problems (CSP)
-* Rational Decision Making
+This project implements an AI-based Traffic Signal Optimization System that dynamically allocates green signals based on current traffic conditions. Instead of using fixed-time traffic lights, the system analyzes vehicle density and applies Artificial Intelligence techniques to reduce congestion and improve traffic flow.
 
 ---
 
-# 🎯 Objectives
+# Artificial Intelligence Concepts Used
 
-* Reduce traffic congestion at intersections.
-* Minimize vehicle waiting time.
-* Improve traffic flow efficiency.
-* Demonstrate AI-based decision making without machine learning.
-* Implement search and CSP techniques for traffic optimization.
+## 1. State Space Representation
 
----
+State Space Representation is a fundamental concept in Artificial Intelligence used to model a problem as a collection of states.
 
-# 🧠 AI Concepts Used
+In this project, a state represents the current traffic condition at an intersection. Each state contains information about the number of vehicles waiting in each lane and their waiting times.
 
-## 1. Intelligent Agent
+The system continuously updates the state after every signal cycle and uses it as the basis for decision-making.
 
-The traffic controller acts as an intelligent agent that:
-
-* Perceives the environment through traffic data.
-* Evaluates lane congestion.
-* Chooses the best action (green signal assignment).
-* Updates the environment after each decision.
-
-### Agent Type
-
-* Goal-Based Agent
-* Rule-Based Agent
-* Rational Agent
+### Purpose
+- Model real-time traffic conditions.
+- Enable intelligent decision making.
+- Track changes in traffic flow over time.
 
 ---
 
-## 2. Environment Characteristics
+## 2. Greedy Algorithm
 
-| Property        | Type                 |
-| --------------- | -------------------- |
-| Observability   | Partially Observable |
-| Environment     | Dynamic              |
-| Agents          | Single Agent         |
-| Decision Making | Rational             |
-| State Changes   | Continuous           |
+The Greedy Algorithm is an optimization technique that selects the best immediate solution at every step.
 
----
+In this project, the lane with the highest vehicle density is selected for the green signal. This approach helps reduce congestion quickly by prioritizing the busiest lane.
 
-## 3. State Representation
+### Purpose
+- Make fast real-time decisions.
+- Reduce traffic congestion efficiently.
+- Minimize computational overhead.
 
-Each traffic state contains:
-
-```python
-{
-    "North": queue_length,
-    "South": queue_length,
-    "East": queue_length,
-    "West": queue_length
-}
-```
-
-Additional information:
-
-* Vehicle queue length
-* Waiting time per lane
+### Advantage
+The algorithm is simple, fast, and suitable for dynamic traffic environments.
 
 ---
 
-## 4. Actions
+## 3. Constraint Satisfaction Problem (CSP)
 
-Possible actions available to the agent:
+A Constraint Satisfaction Problem (CSP) is a problem-solving approach where solutions must satisfy predefined constraints.
 
-```python
-["North", "South", "East", "West"]
-```
+In this traffic system, the decision involves selecting the most appropriate lane for the green signal while satisfying traffic management rules.
 
-Selecting a lane means assigning a green signal to that lane.
+### Constraints Used
+- A lane must contain vehicles before receiving a green signal.
+- Empty lanes should not be prioritized.
+- Signal allocation should contribute to congestion reduction.
 
----
-
-## 5. Transition Model
-
-When a lane receives a green signal:
-
-1. Vehicles pass through the intersection.
-2. Queue length decreases.
-3. Waiting time for that lane resets.
-4. Waiting times for other lanes increase.
+### Purpose
+- Ensure valid signal assignments.
+- Prevent inefficient traffic control decisions.
+- Maintain logical traffic flow management.
 
 ---
 
-## 6. Goal State
+## 4. Heuristic-Based Search
 
-The objective is to:
+A heuristic is a strategy that guides decision-making using practical rules instead of exploring all possible solutions.
 
-* Minimize traffic congestion.
-* Reduce average waiting time.
-* Maintain smooth traffic movement.
+In this project, vehicle density acts as a heuristic. Lanes with higher vehicle counts are given higher priority during signal allocation.
 
----
+### Purpose
+- Reduce search complexity.
+- Improve decision-making speed.
+- Enable near-optimal solutions in real time.
 
-# 🏗️ Project Structure
-
-```text
-Traffic_Signal_Optimization/
-│
-├── config.py
-│
-├── core/
-│   ├── actions.py
-│   ├── environment.py
-│   └── rules.py
-│
-├── csp/
-│   └── scheduler.py
-│
-├── search/
-│   ├── bfs.py
-│   ├── dfs.py
-│   └── greedy.py
-│
-├── utils/
-│   └── logger.py
-│
-├── main.py
-│
-└── README.md
-```
+### Benefit
+The system can make intelligent decisions without expensive computations.
 
 ---
 
-# ⚙️ Modules Description
+## 5. Breadth First Search (BFS)
 
-## config.py
+Breadth First Search is a search algorithm that explores all possible options level by level.
 
-Stores system-wide configurations:
+In this project, BFS is used to generate and analyze possible traffic signal sequences. It explores all signal combinations at a particular depth before moving deeper.
 
-```python
-LANES = ["North", "South", "East", "West"]
+### Purpose
+- Explore possible future traffic signal sequences.
+- Analyze different traffic management strategies.
+- Demonstrate AI search-space exploration.
 
-VEHICLE_PASS_RATE = 5
-
-MAX_GREEN_TIME = 30
-```
-
----
-
-## actions.py
-
-Defines all valid traffic actions.
-
-```python
-def get_possible_actions():
-    return LANES
-```
+### Advantage
+BFS guarantees complete exploration of all possibilities within a specified depth.
 
 ---
 
-## environment.py
+## 6. Depth First Search (DFS)
 
-Represents the traffic environment.
+Depth First Search is a search algorithm that explores one path completely before exploring alternative paths.
 
-Responsibilities:
+In this project, DFS is used to recursively examine possible signal allocation sequences.
 
-* Generate random traffic queues.
-* Track waiting times.
-* Update traffic conditions.
-* Apply green signals.
+### Purpose
+- Explore future signal combinations.
+- Analyze alternative traffic control paths.
+- Demonstrate recursive AI search techniques.
 
-Key Functions:
-
-```python
-update_waiting()
-apply_green(lane)
-is_congested()
-get_state()
-```
+### Advantage
+DFS requires less memory than BFS and can efficiently explore larger search spaces.
 
 ---
 
-## rules.py
+## 7. Rule-Based Artificial Intelligence
 
-Contains heuristic decision-making rules.
+Rule-Based AI uses predefined logical rules to make decisions.
 
-```python
-choose_best_lane(state)
-```
+The traffic optimization system follows rules such as:
 
-Selects the lane with the maximum queue length.
+- Prioritize lanes with higher traffic density.
+- Avoid allocating signals to empty lanes.
+- Update traffic conditions after every signal cycle.
 
----
+### Purpose
+- Provide explainable decisions.
+- Ensure predictable traffic management.
+- Maintain consistency in signal allocation.
 
-## scheduler.py (CSP)
-
-Implements Constraint Satisfaction Problem concepts.
-
-### Constraints
-
-* Only lanes with vehicles can receive green signals.
-* Most congested lane gets higher priority.
-
-Functions:
-
-```python
-is_valid()
-select_mrv()
-schedule()
-```
-
-MRV (Minimum Remaining Values) principle is adapted to prioritize highly congested lanes.
+### Advantage
+Every decision made by the system can be clearly explained and justified.
 
 ---
 
-## bfs.py
+# AI Workflow
 
-Implements Breadth First Search.
-
-Purpose:
-
-* Explore possible signal sequences.
-* Analyze future traffic control actions.
-
-```python
-bfs_simulate()
-```
+1. Capture the current traffic state.
+2. Represent traffic as a state space.
+3. Apply heuristic evaluation based on vehicle density.
+4. Use the Greedy Algorithm to select the best lane.
+5. Validate the decision using CSP constraints.
+6. Explore possible future signal sequences using BFS and DFS.
+7. Update the traffic state and repeat the process.
 
 ---
 
-## dfs.py
+# AI Techniques Summary
 
-Implements Depth First Search.
-
-Purpose:
-
-* Explore traffic signal paths recursively.
-
-```python
-dfs()
-```
-
----
-
-## greedy.py
-
-Implements Greedy Search.
-
-```python
-greedy_step()
-```
-
-Chooses the lane with maximum congestion at every step.
+| AI Concept | Purpose |
+|------------|----------|
+| State Space Representation | Model current traffic conditions |
+| Greedy Algorithm | Select the most congested lane |
+| Constraint Satisfaction Problem (CSP) | Enforce traffic allocation rules |
+| Heuristic Search | Prioritize lanes using traffic density |
+| Breadth First Search (BFS) | Explore signal sequences level by level |
+| Depth First Search (DFS) | Explore signal sequences recursively |
+| Rule-Based AI | Make explainable traffic decisions |
 
 ---
 
-## main.py
+# Conclusion
 
-Main simulation driver.
-
-Responsibilities:
-
-* Initialize traffic state.
-* Execute traffic optimization.
-* Log system activity.
-* Display results.
-
----
-
-# 🔍 Search Algorithms Used
-
-## Greedy Search
-
-### Strategy
-
-Choose the lane with the highest vehicle count.
-
-### Advantages
-
-* Fast
-* Simple
-* Effective for real-time systems
-
-### Complexity
-
-```text
-Time Complexity: O(n)
-Space Complexity: O(1)
-```
-
----
-
-## Breadth First Search (BFS)
-
-### Strategy
-
-Explore all possible signal sequences level by level.
-
-### Complexity
-
-```text
-Time Complexity: O(b^d)
-Space Complexity: O(b^d)
-```
-
-Where:
-
-* b = branching factor
-* d = depth
-
----
-
-## Depth First Search (DFS)
-
-### Strategy
-
-Explore one signal sequence completely before backtracking.
-
-### Complexity
-
-```text
-Time Complexity: O(b^d)
-Space Complexity: O(d)
-```
-
----
-
-# 🔐 Constraint Satisfaction Problem (CSP)
-
-The CSP scheduler determines valid signal assignments.
-
-## Variables
-
-```text
-Green Signal Lane
-```
-
-## Domain
-
-```text
-North
-South
-East
-West
-```
-
-## Constraints
-
-* Queue length must be greater than zero.
-* Priority given to congested lanes.
-* One green signal at a time.
-
----
-
-# 🔄 Simulation Workflow
-
-```text
-Initialize Traffic State
-           │
-           ▼
-Observe Queue Lengths
-           │
-           ▼
-Greedy Search Selects Lane
-           │
-           ▼
-Assign Green Signal
-           │
-           ▼
-Update Traffic State
-           │
-           ▼
-Run CSP Scheduler
-           │
-           ▼
-Repeat Until Completion
-```
-
----
-
-# 📊 Sample Output
-
-```text
-INITIAL STATE:
-{'North': 20, 'South': 10, 'East': 15, 'West': 8}
-
---- STEP 1 ---
-
-Green Signal → North
-
-State:
-{'North': 15, 'South': 10, 'East': 15, 'West': 8}
-
-CSP Suggestion: North
-
---- STEP 2 ---
-
-Green Signal → North
-
-State:
-{'North': 10, 'South': 10, 'East': 15, 'West': 8}
-
-CSP Suggestion: East
-
-FINAL STATE:
-{'North': 5, 'South': 10, 'East': 10, 'West': 8}
-
-# 💡 Features
-
-✅ Rule-Based Traffic Optimization
-
-✅ Intelligent Agent Design
-
-✅ Greedy Search Algorithm
-
-✅ BFS Simulation
-
-✅ DFS Simulation
-
-✅ CSP-Based Scheduling
-
-✅ Dynamic Traffic Environment
-
-✅ Real-Time Decision Making
-
-✅ Waiting Time Tracking
-
-✅ Congestion Detection
-
----
-
-# 📈 Future Enhancements
-
-* Emergency vehicle prioritization.
-* Adaptive green signal timing.
-* Multi-intersection coordination.
-* Real sensor integration.
-* Traffic prediction module.
-* Reinforcement Learning comparison.
-* Graphical User Interface (GUI).
-* Real-time dashboard visualization.
-
----
-
-# 🎓 Course Outcomes Achieved
-
-## CO1
-
-Formulate real-world traffic management as an AI problem using:
-
-* States
-* Actions
-* Goals
-* Constraints
-* Environment representation
-
-## CO2
-
-Implement and analyze search algorithms:
-
-* BFS
-* DFS
-* Greedy Search
-
-## CO3
-
-Apply CSP techniques for intelligent scheduling and optimization.
+This Traffic Signal Optimization System demonstrates the application of core Artificial Intelligence concepts in solving a real-world traffic management problem. By combining State Space Representation, Greedy Optimization, Constraint Satisfaction Problems, Heuristic Search, BFS, DFS, and Rule-Based AI, the system intelligently allocates traffic signals and helps reduce congestion in a dynamic traffic environment.
