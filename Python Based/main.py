@@ -7,43 +7,76 @@ from csp.scheduler import TrafficCSP
 from utils.logger import get_logger
 
 
+def display_state(state_dict):
+    print("┌─────────────────────────────────────────┐")
+
+    for lane, vehicles in state_dict.items():
+        print(f"│ {lane:<10} : {vehicles:>3} Vehicles          │")
+
+    print("└─────────────────────────────────────────┘")
+
+
 def run_simulation(steps=5):
+
     logger = get_logger()
 
     logger.info("Traffic Simulation Started")
 
     state = TrafficState()
 
-    logger.info(f"Initial State: {state.get_state()}")
-    print("\nINITIAL STATE:", state.get_state())
+    print("\n")
+    print("╔══════════════════════════════════════════════════════╗")
+    print("║        TRAFFIC SIGNAL OPTIMIZATION SYSTEM           ║")
+    print("╚══════════════════════════════════════════════════════╝")
 
-    for i in range(steps):
-        print(f"\n--- STEP {i + 1} ---")
-        logger.info(f"Step {i + 1} started")
+    print("\nINITIAL TRAFFIC STATE")
+    display_state(state.get_state())
+
+    logger.info(f"Initial State: {state.get_state()}")
+
+    for step in range(steps):
+
+        print("\n")
+        print("══════════════════════════════════════════════════════")
+        print(f"                    STEP {step + 1}")
+        print("══════════════════════════════════════════════════════")
 
         lane = greedy_step(state)
-        logger.info(f"Greedy selected lane: {lane}")
 
-        print("Green Signal →", lane)
+        before = state.queues[lane]
 
         state.apply_green(lane)
+
+        passed = before - state.queues[lane]
+
         state.update_waiting()
 
-        current_state = state.get_state()
+        print(f"\n🚦 Green Signal Assigned : {lane.upper()}")
+        print(f"🚗 Vehicles Passed       : {passed}")
 
-        print("State:", current_state)
-        logger.info(f"Updated State: {current_state}")
+        logger.info(f"Green Signal: {lane}")
+
+        print("\nCURRENT TRAFFIC STATUS")
+        display_state(state.get_state())
 
         csp = TrafficCSP(state)
         suggestion = csp.schedule()
 
-        print("CSP Suggestion:", suggestion)
-        logger.info(f"CSP Suggestion: {suggestion}")
+        print(f"\n🧠 CSP Recommendation : {suggestion.upper()}")
 
-    final_state = state.get_state()
+        logger.info(f"CSP Recommendation: {suggestion}")
+        logger.info(f"Current State: {state.get_state()}")
 
-    print("\nFINAL STATE:", final_state)
-    logger.info(f"Simulation ended. Final state: {final_state}")
+    print("\n")
+    print("══════════════════════════════════════════════════════")
+    print("                  FINAL TRAFFIC STATE")
+    print("══════════════════════════════════════════════════════")
+
+    display_state(state.get_state())
+
+    logger.info(f"Final State: {state.get_state()}")
+
+    print("\n✅ Simulation Completed Successfully")
 
 
 if __name__ == "__main__":
